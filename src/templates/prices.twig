@@ -9,7 +9,7 @@
 		{% set newCount = newCount+1 %}
 	{% endif %}
  <div id="prices-{{ id }}">
-	{% for currency in craft.commerce.paymentCurrencies.allPaymentCurrencies if currency.primary == false %}
+	{% for currency in craft.commerce.paymentCurrencies.allPaymentCurrencies|filter(currency => currency.primary == false) %}
 		{% set price = variant|currencyPrice(currency.iso, false) %}
 		{% set prices = craft.app.request.getBodyParam('prices') %}
 		{% if prices and prices[id] is defined and prices[id][currency.iso] %}
@@ -35,7 +35,7 @@
 {% endfor %}
 
 <div id="prices-new">
-	{% for currency in craft.commerce.paymentCurrencies.allPaymentCurrencies if currency.primary == false %}
+	{% for currency in craft.commerce.paymentCurrencies.allPaymentCurrencies|filter(currency => currency.primary == false) %}
 		{{ forms.textField({
 			id: 'variants-new-'~currency.iso~'-price',
 			label: 'Price'|t('commerce')~' ('~currency.iso|upper~')',

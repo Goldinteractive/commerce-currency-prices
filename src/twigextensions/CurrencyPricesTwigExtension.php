@@ -14,6 +14,8 @@ use webdna\commerce\currencyprices\CurrencyPrices;
 use craft\commerce\errors\CurrencyException;
 use craft\commerce\Plugin as Commerce;
 use craft\helpers\Localization;
+use Twig\TwigFilter;
+use Twig\Extension\AbstractExtension;
 
 use Craft;
 
@@ -22,7 +24,7 @@ use Craft;
  * @package   CurrencyPrices
  * @since     1.0.0
  */
-class CurrencyPricesTwigExtension extends \Twig_Extension
+class CurrencyPricesTwigExtension extends AbstractExtension
 {
     // Public Methods
     // =========================================================================
@@ -41,11 +43,11 @@ class CurrencyPricesTwigExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-			new \Twig_SimpleFilter('currencyPrice', [$this, 'currencyPrice']),
-			new \Twig_SimpleFilter('currencySalePrice', [$this, 'currencySalePrice']),
-			new \Twig_SimpleFilter('currencyAddonDiscountPrice', [$this, 'currencyAddonDiscountPrice']),
-			new \Twig_SimpleFilter('currencyAddonDiscountPrices', [$this, 'currencyAddonDiscountPrices']),
-			new \Twig_SimpleFilter('localizationNormalizeNumber', [$this, 'localizationNormalizeNumber']),
+			new \Twig\TwigFilter('currencyPrice', [$this, 'currencyPrice']),
+			new \Twig\TwigFilter('currencySalePrice', [$this, 'currencySalePrice']),
+			new \Twig\TwigFilter('currencyAddonDiscountPrice', [$this, 'currencyAddonDiscountPrice']),
+			new \Twig\TwigFilter('currencyAddonDiscountPrices', [$this, 'currencyAddonDiscountPrices']),
+			new \Twig\TwigFilter('localizationNormalizeNumber', [$this, 'localizationNormalizeNumber']),
         ];
     }
 
