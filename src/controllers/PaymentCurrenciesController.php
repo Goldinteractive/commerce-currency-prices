@@ -76,7 +76,9 @@ class PaymentCurrenciesController extends Controller
         }
 
         // Send the model back to the template
-        Craft::$app->getUrlManager()->setRouteParams(['currency' => $currency]);
+         Craft::$app->getUrlManager()->setRouteParams(['currency' => $currency]);
+
+        return $this->asJson(['success' => true]);
     }
 
     /**

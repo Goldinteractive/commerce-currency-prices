@@ -150,7 +150,6 @@ class CurrencyPrices extends Plugin
 		);
 
 		Event::on(Element::class, Element::EVENT_BEFORE_SAVE, function(Event $event) {
-
 			if (Craft::$app->getRequest()->getIsCpRequest()) {
 
 				if ($event->sender instanceof \craft\commerce\elements\Product) {
@@ -179,6 +178,7 @@ class CurrencyPrices extends Plugin
 				}
 
 				if ($event->sender instanceof \verbb\events\elements\Event) {
+
 					$prices = Craft::$app->getRequest()->getBodyParam('prices');
 					$newCount = 1;
 					if ($prices) {
@@ -217,6 +217,7 @@ class CurrencyPrices extends Plugin
 					}
 				}
 
+
 				if ($event->sender instanceof \craft\digitalproducts\elements\Product) {
 					$prices = Craft::$app->getRequest()->getBodyParam('prices');
 
@@ -235,7 +236,6 @@ class CurrencyPrices extends Plugin
 		});
 
 		Event::on(Element::class, Element::EVENT_AFTER_SAVE, function(Event $event) {
-
 			if (Craft::$app->getRequest()->getIsCpRequest()) {
 
 				if ($event->sender instanceof \craft\commerce\elements\Product) {
@@ -329,7 +329,6 @@ class CurrencyPrices extends Plugin
 		});
 
 		Event::on(LineItems::class, LineItems::EVENT_POPULATE_LINE_ITEM, function(LineItemEvent $event) {
-
 				$order = $event->lineItem->getOrder();
 				$paymentCurrency = $order->getPaymentCurrency();
 				$primaryCurrency = Commerce::getInstance()->getPaymentCurrencies()->getPrimaryPaymentCurrencyIso();
